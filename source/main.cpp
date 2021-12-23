@@ -17,6 +17,7 @@
 #include "config/config.h"
 #include "tools/serialRead.h"
 #include "tools/debug.h"
+#include "tools/Oscilloscopes/Oscilloscope.h"
 
 #include "gui/MenuOption.h"
 #include "gui/Menu.h"
@@ -24,16 +25,12 @@
 #include "gui/FunctionOption.h"
 
 
-void def(){
-	return;
-}
-
 int main() {
 	GRRLIB_Init();
 	PAD_Init();
 
 	/*
-	*Iniitalize global fonts
+	* *Iniitalize global fonts
 	**/
 	std::function<void(void)> test;
 	menuFont = GRRLIB_LoadTTF(scientifica_ttf,scientifica_ttf_size);
@@ -41,11 +38,11 @@ int main() {
 	Menu menu1 = Menu("Root", "Root DESC");
 	Menu devMenu = Menu("Controller Development Tools", "A collection of tools for testing new third party controllers");
 	
-	FunctionOption Func1 = FunctionOption("UNIMPLEMENTED","TEST",nullptr);
+	FunctionOption Func1 = FunctionOption("Oscilloscope","TEST",&runOscilloscope);
 	FunctionOption Func2 = FunctionOption("UNIMPLEMENTED","TEST",nullptr);	
 	FunctionOption Func3 = FunctionOption("UNIMPLEMENTED","",nullptr);
 	FunctionOption Func4 = FunctionOption("DEBUG","Dumps information to the screen",&runDebugInfo);	
-	
+
 	FunctionOption DevFunc1 = FunctionOption("Polling Speed Test","TEST",&runPollTest);
 	FunctionOption DevFunc2 = FunctionOption("Goomwave Serial Dump (WIP)","TEST",&runSerialReader);
 
